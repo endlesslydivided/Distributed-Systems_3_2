@@ -86,9 +86,9 @@ int main()
 {
 	setlocale(LC_CTYPE, "Russian");
 
-	string IP = "192.168.100.36";
+	string IP = "192.168.129.181";
 
-	int Tc = 14000;
+	int Tc = 5000;
 
 	SYSTEMTIME tm;
 	GETSINCHRO getsincro, setsincro;

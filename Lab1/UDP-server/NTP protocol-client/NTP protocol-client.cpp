@@ -26,9 +26,8 @@ int main()
 {
 	GetLocalUnixTime();
 
-	string IP;
-	cout << "Enter IP of local NTP-server: ";
-	cin >> IP;
+	string IP = "192.168.129.181";
+
 
 	WSADATA wsaData;
 	if (WSAStartup(MAKEWORD(2, 0), &wsaData) != 0)

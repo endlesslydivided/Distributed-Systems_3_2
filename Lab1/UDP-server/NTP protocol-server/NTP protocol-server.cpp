@@ -30,10 +30,12 @@ struct NTP_packet
 	DWORD32 RootDelay;
 	DWORD32 RootDispersion;
 	CHAR ReferenceIdentifier[4];
+
 	DWORD32 RequestTimestamp[2];
 	DWORD32 ReferenceTimestamp[2];
 	DWORD32 OriginateTimestamp[2];
 	DWORD32 TransmitTimestamp[2];
+
 	DWORD32 KeyIdentifier;
 	DWORD32 MessageDigest[4];
 };
@@ -94,7 +96,7 @@ DWORD WINAPI SyncGlobalUnixTime(void* lpar)
 
 			//считаем время обработки запроса
 			tms = (DWORD64)((1000.0 * ((double)(in_buf.TransmitTimestamp[1]) / (double)0xffffffff)) + (DWORD64)in_buf.TransmitTimestamp[0] * 1000);	// ВРЕМЯ В МИЛИСЕКУНДАХ
-			oms = (DWORD64)((1000.0 * ((double)(in_buf.OriginateTimestamp[1]) / (double)0xffffffff)) + (DWORD64)in_buf.OriginateTimestamp[0] * 1000);	// ВРЕМЯ В МИЛМСЕКУНДАХ
+			oms = (DWORD64)((1000.0 * ((double)(in_buf.OriginateTimestamp[1]) / (double)0xffffffff)) + (DWORD64)in_buf.OriginateTimestamp[0] * 1000);	// ВРЕМЯ В МИЛИСЕКУНДАХ
 
 			DWORD64 transmissionCorrection = (transmissionTime - ((DWORD64)tms - (DWORD64)oms)) / 2;
 			tms = (DWORD64)tms + transmissionCorrection;
